@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Card Detector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Player Hands Top Bar -->
+    <div class="player-hands-bar" id="playerHandsBar">
+        <!-- Player hands will be dynamically inserted here -->
+    </div>
+
+    <div class="container">
+        <!-- Camera Section -->
+        <div class="camera-section">
+            <div class="camera-header">
+                <h1>🎴 Poker Card Detector</h1>
+                <div class="status-indicator">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span id="statusText">Initializing...</span>
+                </div>
+            </div>
+
+            <div class="camera-container">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <div class="camera-overlay" id="overlay"></div>
+            </div>
+
+            <div class="controls">
+                <button id="startCamera" class="btn btn-primary">
+                    <span class="btn-icon">📷</span> Start Camera
+                </button>
+                <button id="stopCamera" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">⏹️</span> Stop Camera
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Detection Settings</h2>
+            </div>
+
+            <!-- Player Count Selection -->
+            <div class="mode-section">
+                <h3>Number of Players</h3>
+                <div class="player-count-selector">
+                    <button class="player-count-btn" data-players="2">2 Players</button>
+                    <button class="player-count-btn active" data-players="3">3 Players</button>
+                    <button class="player-count-btn" data-players="4">4 Players</button>
+                    <button class="player-count-btn" data-players="5">5 Players</button>
+                    <button class="player-count-btn" data-players="6">6 Players</button>
+                </div>
+            </div>
+
+            <!-- Mode Selection -->
+            <div class="mode-section">
+                <h3>Detection Mode</h3>
+                <div class="mode-buttons">
+                    <button id="singleMode" class="mode-btn active">
+                        <span class="mode-icon">📸</span>
+                        <span class="mode-label">Single Detection</span>
+                        <span class="mode-desc">Click to detect once</span>
+                    </button>
+                    <button id="continuousMode" class="mode-btn">
+                        <span class="mode-icon">🎥</span>
+                        <span class="mode-label">Continuous Video</span>
+                        <span class="mode-desc">Auto-detect in real-time</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detection Controls -->
+            <div class="detection-controls">
+                <button id="detectBtn" class="btn btn-detect" disabled>
+                    <span class="btn-icon">🔍</span> Detect Cards
+                </button>
+                <button id="updateHandsBtn" class="btn btn-update" disabled>
+                    <span class="btn-icon">♠️</span> Update Hands
+                </button>
+                <div class="detection-info">
+                    <div class="info-item">
+                        <span class="info-label">FPS:</span>
+                        <span id="fps" class="info-value">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Total Detected:</span>
+                        <span id="totalDetections" class="info-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detection Results -->
+            <div class="results-section">
+                <div class="results-header">
+                    <h3>Detection Results</h3>
+                    <button id="clearResults" class="btn-clear">Clear</button>
+                </div>
+                <div id="results" class="results-container">
+                    <div class="empty-state">
+                        <span class="empty-icon">🃏</span>
+                        <p>No cards detected yet</p>
+                        <small>Start camera and click detect</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
